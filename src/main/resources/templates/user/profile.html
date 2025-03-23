@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+<head>
+	<title data-th-text="${loggedInUser.name}+' | SCM'">Home Page</title>
+</head>
+<body>
+
+	<div id="content" style="padding-left: 250px">
+	
+	<!-- user logged in sidebar show  -->
+	<div th:if="${loggedInUser}">
+		<div data-th-replace="~{user/sidebar :: sidebar}">
+		
+		</div>
+	</div>
+
+	<div class="sm:pl-64 pt-20">
+		<div class="flex justify-center flex-col items-center">
+			<h1 class="text-3xl">Welcome to Profile page....</h1>
+			
+			<!-- profile card -->
+			
+			<div class="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mt-3">
+			  <div class="flex justify-center mt-4">
+			    <img class="w-52 h-52 object-cover rounded-full border-4 border-white shadow-md" data-th-src="@{${loggedInUser.profilePic}}" alt="Profile Picture">
+			  </div>
+			  <div class="p-4">
+			    <div class="text-center mt-2">
+			      <h2 class="text-xl font-semibold text-gray-800" data-th-text="${loggedInUser.name}">John Doe</h2>
+			      <p class="text-gray-600" data-th-text="${loggedInUser.email}" >johndoe@example.com</p>
+			      <p class="text-gray-600 mt-2" data-th-text="${loggedInUser.phoneNumber}">+1234567890</p>
+			    </div>
+			    <div class="mt-4">
+			      <p class="text-gray-700 text-sm" data-th-text="${loggedInUser.about}">
+			        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel ligula scelerisque, vehicula dui eu, fermentum velit.
+			      </p>
+			    </div>
+			    <div class="mt-4 flex items-center justify-between">
+			      <span class="text-gray-700 text-sm">Email Verified</span>
+			      <span class="inline-block bg-green-500 rounded-full h-4 w-4" data-th-classappend="${loggedInUser.emailVarified} ? 'bg-green-500' : 'bg-red-500'"></span>
+			  	  <span class="ml-2 text-sm" data-th-text="${loggedInUser.emailVarified} ? 'Yes' : 'No'"></span>
+			    </div>
+			    <div class="mt-2 flex items-center justify-between">
+			      <span class="text-gray-700 text-sm">Phone Verified</span>
+			      <span class="inline-block bg-red-500 rounded-full h-4 w-4" data-th-classappend="${loggedInUser.phoneVerified} ? 'bg-green-500' : 'bg-red-500'"></span>
+			      <span class="ml-2 text-sm" data-th-text="${loggedInUser.phoneVerified} ? 'Yes' : 'No'"></span>
+			    </div>
+			    <div class="mt-2 text-center">
+			      <p class="text-gray-600 text-xs">Login via: <span data-th-text="${loggedInUser.provider}"></span></p>
+			    </div>
+			  </div>
+			</div>
+			
+							
+			
+			
+		</div>
+		
+	</div>
+	</div>
+	
+	<script type="text/javascript">
+		console.log("This is profile page");
+	</script>
+</body>
+</html>
